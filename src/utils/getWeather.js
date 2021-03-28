@@ -10,7 +10,7 @@ const getWeather = (location, callback) => {
             callback('Location not found. Please try again.', undefined);
         }
         else {
-            forecast = "The current temperature is " + Math.round((body.main.temp - 273.15) * 100) / 100 + " degrees. It feels like " + Math.round((body.main.feels_like - 273.15) * 100)/100 + " degrees."
+            forecast = `Weather summary: ${body.weather[0].description}<br>The current temperature is ${Math.round((body.main.temp - 273.15) * 100) / 100} degrees. It feels like ${Math.round((body.main.feels_like - 273.15) * 100)/100} degrees.`
             callback(undefined, {
                 location: body.name + ', ' + body.sys.country,
                 forecast: forecast
