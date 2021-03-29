@@ -1,5 +1,8 @@
 const request = require('request')
 const moment = require('moment')
+require('dotenv').config()
+
+console.log(process.env.API_KEY)
 
 const getWeather = (location, callback) => {
     url = 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(location) + '&appid=' + process.env.API_KEY
