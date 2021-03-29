@@ -1,4 +1,5 @@
 const request = require('request')
+const moment = require('moment')
 
 const getWeather = (location, callback) => {
     url = 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(location) + '&appid=40e424c3d86a901d693a3c89eaf4a447'
@@ -10,7 +11,12 @@ const getWeather = (location, callback) => {
             callback('Location not found. Please try again.', undefined);
         }
         else {
-            forecast = `Weather summary: ${body.weather[0].description}<br>The current temperature is ${Math.round((body.main.temp - 273.15) * 100) / 100} degrees. It feels like ${Math.round((body.main.feels_like - 273.15) * 100)/100} degrees.`
+            sunrise = moment(body.sys.sunrise*1000).local().format('HH:mm A')
+            sunset = moment(body.sys.sunset*1000).local().format('HH:mm A')
+            
+            forecast = `<br><p>Weather summary: ${body.weather[0].description}</p>`
+            forecast += `<p>The current temperature is ${Math.round((body.main.temp - 273.15) * 100) / 100} degrees. It feels like ${Math.round((body.main.feels_like - 273.15) * 100)/100} degrees.</p>`
+            forecast += `<p>Sunrise: ${sunrise}&emsp;Sunset: ${sunset}</p>`
             callback(undefined, {
                 location: body.name + ', ' + body.sys.country,
                 forecast: forecast
