@@ -2,7 +2,7 @@ const request = require('request')
 const moment = require('moment')
 
 const getWeather = (location, callback) => {
-    url = 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(location) + '&appid=40e424c3d86a901d693a3c89eaf4a447'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(location) + '&appid=' + process.env.API_KEY
     request({url, json : true}, (error, {body} = {}) => {
         if(error) {
             callback('Unable connect to the Weather service.', undefined);
