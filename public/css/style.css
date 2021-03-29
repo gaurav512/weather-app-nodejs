@@ -36,6 +36,11 @@ header a {
     text-decoration: none;
 }
 
+#API-link {
+    color: inherit;
+    text-decoration: none;
+}
+
 #aboutimg {
     width: 250px;
 }
